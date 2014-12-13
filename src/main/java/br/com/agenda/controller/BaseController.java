@@ -10,4 +10,10 @@ public class BaseController {
 	public String welcome() {
 		return "index";
 	}
+
+	@RequestMapping("/novo")
+public String novoCadastro(){
+		System.out.println("page to new user form.");
+		return "novo";
+	}	
 }
