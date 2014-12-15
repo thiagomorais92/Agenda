@@ -5,13 +5,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class DAO {
-	EntityManagerFactory emf;
+	final static  EntityManagerFactory EMF = Persistence.createEntityManagerFactory("agenda");
 	
-	public DAO(){
-		emf = Persistence.createEntityManagerFactory("agenda");
-	}
+	
 
 	public EntityManager getEntityManager(){
-		return emf.createEntityManager();
+		return EMF.createEntityManager();
 	}
 }
