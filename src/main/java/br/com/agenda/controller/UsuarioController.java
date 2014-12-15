@@ -1,20 +1,27 @@
 package br.com.agenda.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.agenda.dao.UsuarioDao;
+import br.com.agenda.interfaces.JpaUsuarioDao;
+import br.com.agenda.interfaces.UsuarioDao;
 import br.com.agenda.model.Usuario;
 
-@Controller
+
 @Transactional
+@Controller
 public class UsuarioController {
+	
+@Autowired
+JpaUsuarioDao dao = new JpaUsuarioDao();
+	
 
 @RequestMapping("novo/cadastrar")
-
-public String cadastrar(Usuario usuario,UsuarioDao dao){
-	dao.salvar(usuario);
+public String cadastrar(Usuario usuario){
+	
+	dao.adiciona(usuario);
 		return "ok";
 	
 	}	
