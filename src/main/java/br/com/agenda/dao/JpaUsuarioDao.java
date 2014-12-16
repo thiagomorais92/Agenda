@@ -1,5 +1,6 @@
-package br.com.agenda.interfaces;
+package br.com.agenda.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -7,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+import br.com.agenda.interfaces.UsuarioDao;
 import br.com.agenda.model.Usuario;
 
 
@@ -23,9 +25,9 @@ public class JpaUsuarioDao implements UsuarioDao {
 	}
 
 	@Override
-	public List<Usuario> lista() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Usuario> listar() {
+		List<Usuario> lista = manager.createQuery("select t from usuario as t where t.id <99").getResultList();
+		return lista;
 	}
 
 	@Override

@@ -46,5 +46,15 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />	
 	</bean>
 	<tx:annotation-driven/>
+	
+	
+	<!-- Conversor de valores -->
+	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+               
+            </list>
+        </property>
+    </bean>
 
 </beans>
