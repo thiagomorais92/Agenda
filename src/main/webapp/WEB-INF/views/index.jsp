@@ -8,18 +8,22 @@
         <link rel="stylesheet" type="text/css" href="resources/css/index.css" />
     </head>
     <body>
-        <c:import url="header.jsp"/>
-        <section>
-        	<br/>
-        	<form action="logar" method="post">
-        		Email: <input type="text" name="login"/><br/><br/>
-        		Senha: <input type="password" name="senha"><br/><br/>
-        		<input type="submit" value="Logar"><br/>
-        		<a href="./novo">Não possuo cadastro.</a>
-        	
-            
-        </section>
-        <c:import url="footer.jsp"/>
+        
+        <div id="center">
+            <div id="topo"><p>Agenda</p></div>
+            <div class="form">
+                <form>
+                    <span>Email:</span> <input id="nome" type="text" name="email"/><br/><br/>
+                    <span>Senha:</span> <input id="senha" type="password" name="senha"/> <br/><br/>
+                    <input id="bt" type="submit" value="Login">
+                </form>
+                
+            </div>
+            <div id="minifooter">
+                <a href="./novo">Quero me registrar</a>  
+            </div>
+        </div>
+    
     
     </body>
 
