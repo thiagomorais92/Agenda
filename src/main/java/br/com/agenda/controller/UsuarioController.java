@@ -35,9 +35,9 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping("logar")
-	public String logar(){
-		
-		return "string";
+	public String logar(Usuario user){
+		dao.logarUsuario(user);
+		return "ok";
 	}
 
 	
