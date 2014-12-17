@@ -33,6 +33,12 @@ public class UsuarioController {
 		dao.adiciona(usuario);
 		return "ok";
 	}
+	
+	@RequestMapping("logar")
+	public String logar(){
+		
+		return "string";
+	}
 
 	
 }
