@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,24 +9,46 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="resources/css/novoStyle.css"/>
 </head>
-<c:import url="header.jsp"/>
+
 <body>
-	 <form action="novo/cadastrar" method="post">
-                Nome:<br/>
-                <input type="text" name="nome"/><br/>
-                Sobrenome:<br/>
-                <input type="text" name="sobrenome"/><br/>
-                Email:<br/>
-                <input type="text" name="email"/><br/>
-                Senha:<br/>
-                <input type="password" name="senha"/><br/>
-                Repita a senha:<br/>
-                <input type="password" /><br/>
-                <input type="submit" value="Cadastrar"/>
+	  <div id="center">
+            <div id="topo"><p>Cadastro</p></div>
+            <br/>
+            <form action="cadastrar" method="post">
+                
+                <div id="warning">
+                <form:errors path="usuario.nome"/><br/>
+                <form:errors path="usuario.sobrenome"/><br/>
+                <form:errors path="usuario.email"/><br/>
+                <form:errors path="usuario.senha"/><br/>
+                <form:errors path="usuario.resenha"/><br/>
+                </div>
+                <div id="inputBasic">
+                    <span>Nome:</span>
+                    <input type="text" name="nome"/><br/>
+                </div>
+                <div id="inputBasic">
+                    <span>Sobrenome:</span>
+                    <input type="text" name="sobrenome"/><br/>
+                </div>
+                <div id="inputBasic">
+                    <span>Email:</span>
+                    <input type="text" name="email"/><br/>
+                </div>
+                
+                <div id="inputBasic">
+                    <span>Senha:</span>
+                    <input type="password" name="senha"/><br/>
+                </div>
+                <div id="inputBasic">
+                    <span>Repita a senha:</span>
+                    <input type="password" name="resenha"/><br/>
+                </div>
+                
+                <input id="bt" type="submit" value="Criar conta"/>
                 
                 
             </form>
-	
-<c:import url="footer.jsp"/>
+        </div>
 </body>
 </html>

@@ -5,6 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+
 
 @Entity
 @Table(name = "usuario")
@@ -13,19 +19,36 @@ public class Usuario {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID_USUARIO")
+	
 	private Integer id;
 	
 	@Column(name  = "NOME")
+	@Size(min=3,message="Nome curto.")
 	private String nome;
 	
 	@Column(name = "SOBRENOME")
+	@Size(min=3,message="sobrenome curto.")
 	private String sobrenome;
 	
 	@Column(name = "EMAIL")
+	@Size(min=3,message="email curto.")
 	private String email;
 	
 	@Column(name = "SENHA")
+	@Size(min=3,message="senha curta.")
 	private String senha;
+	
+	@Column(name = "RESENHA")
+	@Size(min=3,message="Campo repetir senha obrigatório.") 
+	private String resenha;
+
+	public String getResenha() {
+		return resenha;
+	}
+
+	public void setResenha(String resenha) {
+		this.resenha = resenha;
+	}
 
 	public Integer getId() {
 		return id;

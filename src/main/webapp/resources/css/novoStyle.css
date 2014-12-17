@@ -1,11 +1,78 @@
 body{
-    height: 1024px;
-    width:768px;
+    height: 35em;
+    width:  30em;
     margin: auto;
     border-radius: 0.3em;
-    
+    background-color: #DFDFDF;
 }
 
-section{
-   background-color: #fea ; 
+#center{
+    
+    border: 0.1em solid rgba(118, 118, 118, 0.74);
+    border-radius:0.3em; 
+    margin-top: 10em;
+    margin-left: auto;
+    margin-right: auto;
+    padding:1em ;
+    height: 80%;
+    width: 20em;
+    align-content: center;
+    background-color: white;
+}
+
+#topo{
+    border-radius:0.3em;
+    margin: auto;
+    margin-top: -3.1em;
+    margin-left: -1.5em;
+    width: 115%;
+    height: 10%;
+    background-image: linear-gradient(to bottom, rgba(54, 74, 229, 0.97), #1b2cb1);
+}
+#topo p {
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    font-size: 2.5em;
+    font-family: monospace;
+}
+
+#warning{
+	margin-top: -1.2em;
+	margin-left: -1em;
+	border-radius: 0.3em;
+	width:110%;
+	height: auto;
+	background-color: #E6E6E6;
+}
+
+#bt{
+    color: rgba(255, 255, 255, 0.69);
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 1em;
+    margin-left: 1.6em;
+    width: 80%;
+    height: 2.3em;
+    border-radius: 0.5em;
+    font-size: 1.5em;
+     background-image: linear-gradient(to bottom, rgb(54, 74, 229), #1b2cb1); ;
+    font-family: monospace;
+}
+
+#inputBasic{
+    width: 100%;
+    margin-bottom: 0.9em;
+    padding: 0.4em;
+}
+
+#inputBasic span{
+    text-align: right;
+    font-weight: bold;
+    color:black;
+}
+#inputBasic input{
+    width: 65%;
+    height: 1.5em;
+    float: right;
+    border-radius: 0.3em
 }
