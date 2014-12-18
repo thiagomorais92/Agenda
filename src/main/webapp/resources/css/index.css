@@ -1,15 +1,20 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
 body{
     height: 35em;
     width:  30em;
     margin: auto;
-    border-radius: 0.3em;
+    border-radius: 0.1em;
     background-color: #DFDFDF;
 }
 
 #center{
     
     border: 0.1em solid rgba(118, 118, 118, 0.74);
-    border-radius:0.3em; 
+    border-radius:0.1em; 
     margin-top: 10em;
     margin-left: auto;
     margin-right: auto;
@@ -21,7 +26,7 @@ body{
 }
 
 #topo{
-    border-radius:0.5em;
+    border-radius:0.1em;
     margin: auto;
     margin-top: -3.1em;
     margin-left: -1.5em;
@@ -45,16 +50,16 @@ body{
     margin-right: auto;
 }
 
-#nome{
-    width: 100%;
-    height: 2em;
-    border-radius: 0.3em;
+#email{
+    width: 90%;
+    padding: 0.5em;
+    border-radius: 0.1em;
     
 }
 #senha{
-    width: 100%;
-    height: 2em;
-    border-radius: 0.3em;
+    width: 90%;
+    padding: 0.5em;
+    border-radius: 0.1em;
     
 }
 #bt{
@@ -63,7 +68,7 @@ body{
     margin-left:auto;
     width: 100%;
     height: 2.3em;
-    border-radius: 0.5em;
+    border-radius: 0.1em;
     font-size: 1.5em;
      background-image: linear-gradient(to bottom, rgba(54, 74, 229, 0.97), #1b2cb1); ;
     font-family: monospace;
@@ -87,7 +92,7 @@ body{
     margin-top: 1em;
     margin-left: -1em;
     width: 110%;
-    border-radius: 0.3em;
+    border-radius: 0.1em;
     height: 4.1em;
     background-color: #e6e6e6;
 }

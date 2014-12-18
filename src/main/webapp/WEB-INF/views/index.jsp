@@ -13,7 +13,7 @@
             <div id="topo"><p>Agenda</p></div>
             <div class="form">
                 <form action="logar" method="post">
-                    <span>Email:</span> <input id="nome" type="text" name="email"/><br/><br/>
+                    <span>Email:</span> <input id="email" type="text" name="email"/><br/><br/>
                     <span>Senha:</span> <input id="senha" type="password" name="senha"/> <br/><br/>
                     <input id="bt" type="submit" value="Login">
                 </form>

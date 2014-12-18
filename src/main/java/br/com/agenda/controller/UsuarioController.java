@@ -27,7 +27,7 @@ public class UsuarioController {
 	public String cadastrar(@Valid Usuario usuario,BindingResult bindingResult) {
 		if(bindingResult.hasErrors()){
 			System.out.println("Erro na validação");
-			return "novo";
+			return "/novo";
 		}
 		
 		dao.adiciona(usuario);
