@@ -26,7 +26,7 @@ import br.com.agenda.model.Usuario;
 public class UsuarioController {
 
 	@Autowired
-	JpaUsuarioDao dao = new JpaUsuarioDao();
+	JpaUsuarioDao dao;
 
 	@RequestMapping("cadastrar")
 	public String cadastrar(@Valid Usuario usuario,BindingResult bindingResult) {

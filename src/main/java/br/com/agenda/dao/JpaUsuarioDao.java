@@ -33,7 +33,7 @@ public class JpaUsuarioDao implements UsuarioDao {
 	@Override
 	public List<Usuario> listar() {
 			
-		Query query = manager.createQuery(" select u from Usuario as u");
+		Query query = manager.createQuery("select u from Usuario  u");
 		List<Usuario> lista = query.getResultList(); 
 		return lista;
 	}
