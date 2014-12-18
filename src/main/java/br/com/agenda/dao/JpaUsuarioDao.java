@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 
@@ -52,17 +53,18 @@ public class JpaUsuarioDao implements UsuarioDao {
 	}
 
 	@Override
-	public Usuario logarUsuario(Usuario t) {
+	public boolean logarUsuario(Usuario t) {
 		Usuario user = new Usuario();
 		Query query =  manager.createQuery("from Usuario  as u where u.email = :email and u.senha = :senha");
 		query.setParameter("email", t.getEmail());
 		query.setParameter("senha", t.getSenha());
-		
-		List<Usuario> lista = query.getResultList();
-		if(lista != null){
-			return user = lista.get(0);
+		try{
+		user = (Usuario) query.getSingleResult();
+		return true;
+		}catch(NoResultException e ){
+			return false;
 		}
-		return user;
+		
 	}
 
 	

@@ -27,7 +27,7 @@ public class UsuarioController {
 	public String cadastrar(@Valid Usuario usuario,BindingResult bindingResult) {
 		if(bindingResult.hasErrors()){
 			System.out.println("Erro na validação");
-			return "/novo";
+			return "/";
 		}
 		
 		dao.adiciona(usuario);
@@ -36,8 +36,10 @@ public class UsuarioController {
 	
 	@RequestMapping("logar")
 	public String logar(Usuario user){
-		dao.logarUsuario(user);
-		return "ok";
+		if( dao.logarUsuario(user)){
+			return "ok";
+		}else{return "novo";}
+		
 	}
 
 	
