@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -30,7 +32,9 @@ public class JpaUsuarioDao implements UsuarioDao {
 
 	@Override
 	public List<Usuario> listar() {
-		List<Usuario> lista = manager.createQuery("select t from usuario as t where t.id <99").getResultList();
+			
+		Query query = manager.createQuery(" select u from Usuario as u");
+		List<Usuario> lista = query.getResultList(); 
 		return lista;
 	}
 
