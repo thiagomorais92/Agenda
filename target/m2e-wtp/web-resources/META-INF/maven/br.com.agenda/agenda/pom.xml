@@ -137,6 +137,20 @@
 			<version>1.2</version>
 		</dependency>
 
+		<!-- tiles -->
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		
+
 		<!-- Utilities -->
 		<dependency>
 			<groupId>commons-lang</groupId>
