@@ -1,6 +1,8 @@
 package br.com.agenda.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -33,14 +35,18 @@ public class UsuarioController {
 	@Autowired
 	JpaUsuarioDao dao;
 
-	@RequestMapping("cadastrar")
-	public String cadastrar(@Valid Usuario usuario,BindingResult bindingResult) {
+	@RequestMapping(value="cadastrar",method=RequestMethod.POST)
+	public String cadastrar(@Valid Usuario usuario,BindingResult bindingResult,HttpSession session) {
 		if(bindingResult.hasErrors()){
+			Map<String,Object> model = new HashMap<String, Object>();
+			model.put("usuario", usuario);
 			System.out.println("Erro na validação");
 			return "/novo";
 		}
 		
 		dao.adiciona(usuario);
+		session.setAttribute("usuario", usuario);
+		System.out.println("Novo usuário: "+usuario.getNome()+" Cadastrado com sucesso!");
 		return "ok";
 	}
 	
@@ -55,6 +61,7 @@ public class UsuarioController {
 	@RequestMapping(value="logar", method=RequestMethod.POST)
 	public String logar(Usuario user, HttpSession session){
 		if( dao.logarUsuario(user)){
+			System.out.println(user.getEmail()+" Logado com sucesso!");
 			session.setAttribute("usuario", user);
 			return "ok";
 		}else{return "redirect:/";}

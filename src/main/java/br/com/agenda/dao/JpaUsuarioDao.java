@@ -65,7 +65,7 @@ public class JpaUsuarioDao implements UsuarioDao {
 		try{
 		user = (Usuario) query.getSingleResult();
 		return true;
-		}catch(NoResultException e ){
+		}catch(NoResultException e){
 			return false;
 		}
 		

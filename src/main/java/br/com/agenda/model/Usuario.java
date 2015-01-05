@@ -1,5 +1,7 @@
 package br.com.agenda.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
@@ -31,7 +34,7 @@ public class Usuario {
 	private String sobrenome;
 	
 	@Column(name = "EMAIL")
-	@Size(min=3,message="email curto.")
+	@Email(message="Iste não é um email válido.") @NotEmpty @NotNull
 	private String email;
 	
 	@Column(name = "SENHA")
@@ -41,11 +44,14 @@ public class Usuario {
 	@Column(name = "RESENHA")
 	@Size(min=3,message="Campo repetir senha obrigatório.") 
 	private String resenha;
+	
+	@NotNull
+	private Date dataCadastro = new Date();
 
 	public String getResenha() {
 		return resenha;
 	}
-
+	
 	public void setResenha(String resenha) {
 		this.resenha = resenha;
 	}

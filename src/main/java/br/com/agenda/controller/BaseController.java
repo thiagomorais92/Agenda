@@ -13,7 +13,7 @@ public class BaseController {
 
 	@RequestMapping("/novo")
 public String novoCadastro(){
-		System.out.println("page to new user form.");
+		System.out.println("Página de cadastro de novo Usuário.");
 		return "novo";
 	}	
 }
