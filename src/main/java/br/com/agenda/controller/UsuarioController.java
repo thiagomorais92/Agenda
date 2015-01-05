@@ -59,12 +59,23 @@ public class UsuarioController {
 	
 	
 	@RequestMapping(value="logar", method=RequestMethod.POST)
-	public String logar(Usuario user, HttpSession session){
-		if( dao.logarUsuario(user)){
-			System.out.println(user.getEmail()+" Logado com sucesso!");
-			session.setAttribute("usuario", user);
-			return "ok";
-		}else{return "redirect:/";}
+	public String logar(@Valid Usuario usuario,BindingResult erros, HttpSession session){
+		if(erros.hasErrors()){
+			System.out.println("HAS errors");
+			Map<String,Object> model = new HashMap<String, Object>();
+			model.put("usuario", usuario);
+			return new BaseController().welcome(model);
+		}else{
+			
+			if( dao.logarUsuario(usuario)){
+				System.out.println(usuario.getEmail()+" Logado com sucesso!");
+				session.setAttribute("usuario", usuario);
+				return "ok";
+			}else{return "redirect:/";}
+			
+		}
+		
+		
 		
 	}
 	@RequestMapping("listar")

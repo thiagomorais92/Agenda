@@ -25,10 +25,12 @@
                 </div>
                 <div id="inputBasic">
                     <span>Nome:</span>
+                    <form:errors path="usuario.nome" cssClass="erro">*</form:errors>
                     <input type="text" name="nome"/><br/>
                 </div>
                 <div id="inputBasic">
                     <span>Sobrenome:</span>
+                    <form:errors path="usuario.sobrenome" cssClass="erro">*</form:errors>
                     <input type="text" name="sobrenome"/><br/>
                 </div>
                 <div id="inputBasic">
