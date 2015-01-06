@@ -11,7 +11,7 @@
 						http://www.springframework.org/schema/tx 
 						http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 						http://www.springframework.org/schema/aop
-						http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+ 						http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"> 
 
 	<context:component-scan base-package="br.com.agenda" />
 	<mvc:annotation-driven />
@@ -47,6 +47,10 @@
 	</bean>
 	<tx:annotation-driven/>
 	
+	<!-- Para fazer upload -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<property name="maxUploadSize" value="1048576"/>
+	</bean>
 	
 	<!-- Conversor de valores -->
 	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">

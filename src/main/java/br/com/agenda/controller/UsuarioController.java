@@ -1,5 +1,6 @@
 package br.com.agenda.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.agenda.dao.JpaUsuarioDao;
@@ -36,7 +39,11 @@ public class UsuarioController {
 	JpaUsuarioDao dao;
 
 	@RequestMapping(value="cadastrar",method=RequestMethod.POST)
-	public String cadastrar(@Valid Usuario usuario,BindingResult bindingResult,HttpSession session) {
+	public String cadastrar(@Valid Usuario usuario,
+			@RequestParam(value="foto",required=false) MultipartFile foto,
+			BindingResult bindingResult,HttpSession session) {
+		
+		//caso tenhamos erro na validação, cai aqui nesse IF
 		if(bindingResult.hasErrors()){
 			Map<String,Object> model = new HashMap<String, Object>();
 			model.put("usuario", usuario);
@@ -47,9 +54,30 @@ public class UsuarioController {
 		dao.adiciona(usuario);
 		session.setAttribute("usuario", usuario);
 		System.out.println("Novo usuário: "+usuario.getNome()+" Cadastrado com sucesso!");
+		
+		//manipulando a foto
+		if(! foto.isEmpty()){
+			try {
+				processarFoto(usuario,foto);
+			} catch (IOException e) {
+				System.out.println("Erro ao fazer upload da imagem "+e.getMessage());
+				
+			}
+		}
 		return "ok";
 	}
 	
+	private void processarFoto(Usuario usuario, MultipartFile foto) throws IOException {
+		byte[] conteudo = foto.getBytes();
+		persistirConteudo(usuario,conteudo);
+		
+	}
+
+	private void persistirConteudo(Usuario usuario, byte[] conteudo) {
+		System.out.println("upload da imagem realizado com sucesso.");
+		
+	}
+
 	@RequestMapping("usuario/autenticado")
 	public ModelAndView infoAutenticacao(@ModelAttribute("usuario") Usuario user){
 		ModelAndView mav = new ModelAndView("ok");

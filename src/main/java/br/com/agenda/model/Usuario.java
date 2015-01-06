@@ -34,10 +34,10 @@ public class Usuario {
 	private String sobrenome;
 	
 	@Column(name = "EMAIL")
-	@Email(message="Este não é um email válido.") @NotEmpty @NotNull @Size(min=6,message="Email curto.")
+	@Email(message="Este não é um email válido.") @NotEmpty  
 	private String email;
 	
-	@Column(name = "SENHA")@NotNull
+	@Column(name = "SENHA")@NotEmpty
 	@Size(min=3,message="senha curta.")
 	private String senha;
 	
