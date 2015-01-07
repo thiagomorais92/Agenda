@@ -231,7 +231,12 @@
 			<version>2.1</version>
 		</dependency>
 
-
+		<!-- JSON no SPRING MVC -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.7.1</version>
+		</dependency>
 	</dependencies>
 
 </project>

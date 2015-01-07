@@ -13,7 +13,7 @@
         <div id="center">
             <div id="topo"><p>Agenda</p></div>
             <div class="form">
-                <form action="logar" method="POST">
+                <form action="main" method="POST">
                     <span>Email:</span>
                     <form:errors path="usuario.email" cssClass="erro"/>
                     <input id="email" type="text" name="email"/><br/><br/>

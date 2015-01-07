@@ -1,0 +1,43 @@
+*{
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+}
+
+body{
+    height: 35em;
+    width:  30em;
+    margin: auto;
+    border-radius: 0.1em;
+    background-color: #DFDFDF;
+}
+header{
+    background-color: inherit;
+    width: 100%;
+    padding-top: 1em;
+    text-align: center;
+    
+}
+<!--feito para que todo o body fique cinza -->
+header h1{background-color: inherit;}
+nav{background-color: inherit;}
+nav ul{background-color: inherit;}
+
+
+nav ul li{ 
+    background-color: inherit;
+    list-style: none;
+    display: inline;
+}
+#logout a{
+    font-family: sans-serif;
+    height: 1em;
+    width: 1em;
+    color: #000;
+    text-align: right;
+    text-decoration: none;
+    
+}
+#logout{
+    float: right;
+}
