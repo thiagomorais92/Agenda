@@ -10,13 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BaseController {
 
 	@RequestMapping("/")
-	public String welcome(Map<String, Object> model) {
+	public String welcome() {
 		return "index";
 	}
 
-	@RequestMapping("/novo")
-public String novoCadastro(){
-		System.out.println("Página de cadastro de novo Usuário.");
-		return "novo";
-	}	
+	
 }

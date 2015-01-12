@@ -21,8 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.agenda.dao.JpaUsuarioDao;
-import br.com.agenda.interfaces.UsuarioDao;
+import br.com.agenda.dao.UsuarioDao;
 import br.com.agenda.model.Usuario;
 
 @Transactional
@@ -31,8 +30,16 @@ import br.com.agenda.model.Usuario;
 public class UsuarioController {
 
 	@Autowired
-	JpaUsuarioDao dao;
+	UsuarioDao dao;
+	@Autowired
+	HttpSession session;
 
+	@RequestMapping("/novo")
+	public String novoCadastro(){
+			System.out.println("Página de cadastro de novo Usuário.");
+			return "usuario/novo";
+		}	
+	
 	@RequestMapping(value = "cadastrar", method = RequestMethod.POST)
 	public String cadastrar(@Valid Usuario usuario,
 			@RequestParam(value = "foto", required = false) MultipartFile foto,
@@ -43,7 +50,7 @@ public class UsuarioController {
 			Map<String, Object> model = new HashMap<String, Object>();
 			model.put("usuario", usuario);
 			System.out.println("Erro na validação");
-			return "/novo";
+			return "/usuario/novo";
 		}
 
 		dao.adiciona(usuario);
@@ -61,7 +68,7 @@ public class UsuarioController {
 
 			}
 		}
-		return "ok";
+		return "main/main";
 	}
 
 	private void processarFoto(Usuario usuario, MultipartFile foto)
@@ -85,22 +92,21 @@ public class UsuarioController {
 		return mav;
 	}
 
-	//login do funcionario feito no index, com validações.
+	//login do Usuário feito no index, com validações.
 	@RequestMapping(value = "main", method = RequestMethod.POST)
 	public String logar(@Valid Usuario usuario, BindingResult erros,
 			HttpSession session) {
 		//possue erro no preenchimento do email ou senha?
+		System.out.println("UsuarioController: logar()");
 		if (erros.hasErrors()) {
 			System.out.println("HAS errors");
-			Map<String, Object> model = new HashMap<String, Object>();
-			model.put("usuario", usuario);
-			return new BaseController().welcome(model);
+			return new BaseController().welcome();
 		} else {
 
 			if (dao.logarUsuario(usuario)) {
 				System.out.println(usuario.getEmail() + " Logado com sucesso!");
-				session.setAttribute("usuario", usuario);
-				return "main";
+				session.setAttribute("usuarioLogado", usuario);
+				return "/main/main";
 			} else {
 				return "redirect:/";
 			}
@@ -115,6 +121,13 @@ public class UsuarioController {
 		session.invalidate();
 		return "redirect:/";
 	}
-	
+	@RequestMapping("/lista")
+	public ModelAndView lista(){
+		System.out.println("lista");
+		ModelAndView mav = new ModelAndView("ok");
+		List<Usuario> usuarios = dao.listar();
+		mav.addObject("usuarios", usuarios);
+		return mav;
+	}
 	
 }

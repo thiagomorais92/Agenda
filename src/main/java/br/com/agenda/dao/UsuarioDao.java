@@ -14,18 +14,18 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.agenda.interfaces.UsuarioDao;
+import br.com.agenda.interfaces.GenericDao;
 import br.com.agenda.model.Usuario;
 
 
 @Repository
-public class JpaUsuarioDao implements UsuarioDao {
+public class UsuarioDao implements GenericDao<Usuario> {
 
 	@PersistenceContext
 	EntityManager manager;
 	
 	@Override
-	public Usuario buscaPorId(Long id) {
+	public Usuario buscaPorId(Usuario usuario) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -33,7 +33,7 @@ public class JpaUsuarioDao implements UsuarioDao {
 	@Override
 	public List<Usuario> listar() {
 			
-		Query query = manager.createQuery("select u from Usuario  u");
+		 Query query = manager.createQuery("select u from Usuario u");
 		List<Usuario> lista = query.getResultList(); 
 		return lista;
 	}
@@ -56,7 +56,7 @@ public class JpaUsuarioDao implements UsuarioDao {
 		
 	}
 
-	@Override
+	
 	public boolean logarUsuario(Usuario t) {
 		Usuario user = new Usuario();
 		Query query =  manager.createQuery("from Usuario  as u where u.email = :email and u.senha = :senha");
