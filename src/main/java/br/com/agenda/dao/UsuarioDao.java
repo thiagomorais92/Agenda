@@ -57,16 +57,16 @@ public class UsuarioDao implements GenericDao<Usuario> {
 	}
 
 	
-	public boolean logarUsuario(Usuario t) {
+	public Usuario logarUsuario(Usuario t) {
 		Usuario user = new Usuario();
 		Query query =  manager.createQuery("from Usuario  as u where u.email = :email and u.senha = :senha");
 		query.setParameter("email", t.getEmail());
 		query.setParameter("senha", t.getSenha());
 		try{
 		user = (Usuario) query.getSingleResult();
-		return true;
+		return user;
 		}catch(NoResultException e){
-			return false;
+			return null;
 		}
 		
 	}

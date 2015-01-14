@@ -103,7 +103,7 @@ public class UsuarioController {
 			return new BaseController().welcome();
 		} else {
 
-			if (dao.logarUsuario(usuario)) {
+			if (dao.logarUsuario(usuario) != null) {
 				System.out.println(usuario.getEmail() + " Logado com sucesso!");
 				session.setAttribute("usuarioLogado", usuario);
 				return "/main/main";
