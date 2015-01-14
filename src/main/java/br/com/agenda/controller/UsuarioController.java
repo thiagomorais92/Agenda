@@ -102,10 +102,11 @@ public class UsuarioController {
 			System.out.println("HAS errors");
 			return new BaseController().welcome();
 		} else {
-
-			if (dao.logarUsuario(usuario) != null) {
+				Usuario logado = dao.logarUsuario(usuario);
+			if (logado != null) {
+				
 				System.out.println(usuario.getEmail() + " Logado com sucesso!");
-				session.setAttribute("usuarioLogado", usuario);
+				session.setAttribute("usuarioLogado", logado);
 				return "/main/main";
 			} else {
 				return "redirect:/";
