@@ -1,5 +1,6 @@
 package br.com.agenda.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,13 +17,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "USUARIO")
 public class Usuario {
 
 	@Id
 	@GeneratedValue
 	@Column(name = "ID_USUARIO")
-	
 	private Integer id;
 	
 	@Column(name  = "NOME")
@@ -34,10 +34,10 @@ public class Usuario {
 	private String sobrenome;
 	
 	@Column(name = "EMAIL")
-	@Email(message="Este não é um email válido.") @NotEmpty  
+	@Email(message="Este não é um email válido.") @NotEmpty  @NotNull
 	private String email;
 	
-	@Column(name = "SENHA")@NotEmpty
+	@Column(name = "SENHA")@NotEmpty @NotNull
 	@Size(min=3,message="senha curta.")
 	private String senha;
 	
@@ -45,8 +45,8 @@ public class Usuario {
 	@Size(min=3,message="Campo repetir senha obrigatório.") 
 	private String resenha;
 	
-	@NotNull
-	private Date dataCadastro = new Date();
+	
+	private Calendar dataCadastro = Calendar.getInstance();
 
 	public String getResenha() {
 		return resenha;

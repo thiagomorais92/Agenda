@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.agenda.dao.ContatoDao;
 import br.com.agenda.model.Contato;
+import br.com.agenda.model.Usuario;
 
 @Controller
 @Transactional
@@ -21,10 +22,13 @@ public class ContatoController {
 
 	@Autowired
 	ContatoDao dao;
+	@Autowired
+	HttpSession session;
 	
 	@RequestMapping("contato/add")
-	public ModelAndView addContato(HttpSession session){
-		
+	public ModelAndView addContato(){
+		Usuario teste = (Usuario) session.getAttribute("usuarioLogado");
+		System.out.println("fazendo um teste: "+teste.getId()+teste.getEmail());
 		ModelAndView mav = new ModelAndView("contato/add");
 		return mav;
 	}

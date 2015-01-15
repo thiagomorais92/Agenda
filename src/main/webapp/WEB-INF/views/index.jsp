@@ -12,9 +12,10 @@
         
         <div id="center">
             <div id="topo"><p>Agenda</p></div>
+            
             <div class="form">
                 <form action="main" method="POST">
-                    <span>Email:</span>
+                    <span>Email:</span><p>${erro}</p>
                     <form:errors path="usuario.email" cssClass="erro"/>
                     <input id="email" type="text" name="email"/><br/><br/>
                     

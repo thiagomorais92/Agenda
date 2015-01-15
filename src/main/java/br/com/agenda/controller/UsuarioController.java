@@ -10,7 +10,10 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.agenda.dao.UsuarioDao;
 import br.com.agenda.model.Usuario;
 
-@Transactional
+@Transactional(propagation=Propagation.REQUIRES_NEW,timeout=100)
 @Controller
 @SessionAttributes("usuario")
 public class UsuarioController {
@@ -42,32 +45,33 @@ public class UsuarioController {
 	
 	@RequestMapping(value = "cadastrar", method = RequestMethod.POST)
 	public String cadastrar(@Valid Usuario usuario,
-			@RequestParam(value = "foto", required = false) MultipartFile foto,
+			//@RequestParam(value = "foto", required = false) MultipartFile foto,
 			BindingResult bindingResult, HttpSession session) {
+		System.out.println("UsuarioController.cadastrar()");
 
 		// este IF verifica se há erros na validação do formulário
 		if (bindingResult.hasErrors()) {
 			Map<String, Object> model = new HashMap<String, Object>();
 			model.put("usuario", usuario);
-			System.out.println("Erro na validação");
+			System.out.println("Erro na validação: Campos não preenchidos corretamente.");
 			return "/usuario/novo";
 		}
-
+		if(usuario.getNome()== null || usuario.getNome().equals("")){return this.novoCadastro();}
 		dao.adiciona(usuario);
 		session.setAttribute("usuario", usuario);
 		System.out.println("Novo usuário: " + usuario.getNome()
 				+ " Cadastrado com sucesso!");
 
 		// manipulando a foto(upload)
-		if (!foto.isEmpty()) {
-			try {
-				processarFoto(usuario, foto);
-			} catch (IOException e) {
-				System.out.println("Erro ao fazer upload da imagem "
-						+ e.getMessage());
-
-			}
-		}
+//		if (!foto.isEmpty()) {
+//			try {
+//				processarFoto(usuario, foto);
+//			} catch (IOException e) {
+//				System.out.println("Erro ao fazer upload da imagem "
+//						+ e.getMessage());
+//
+//			}
+//		}
 		return "main/main";
 	}
 
@@ -105,10 +109,11 @@ public class UsuarioController {
 				Usuario logado = dao.logarUsuario(usuario);
 			if (logado != null) {
 				
-				System.out.println(usuario.getEmail() + " Logado com sucesso!");
+				System.out.println(logado.getNome() + " Logado com sucesso!");
 				session.setAttribute("usuarioLogado", logado);
 				return "/main/main";
 			} else {
+				
 				return "redirect:/";
 			}
 
@@ -124,7 +129,7 @@ public class UsuarioController {
 	}
 	@RequestMapping("/lista")
 	public ModelAndView lista(){
-		System.out.println("lista");
+		
 		ModelAndView mav = new ModelAndView("ok");
 		List<Usuario> usuarios = dao.listar();
 		mav.addObject("usuarios", usuarios);

@@ -18,6 +18,7 @@ public class AutenticadorInterceptor extends HandlerInterceptorAdapter {
 			if(uri.endsWith("novo") ||
 					uri.endsWith("main") ||
 					uri.endsWith("agenda/") ||
+					uri.endsWith("cadastrar") ||
 					uri.contains("resources")){
 				System.out.println("Interceptor: nos IFS que podem seguir");
 				return true;

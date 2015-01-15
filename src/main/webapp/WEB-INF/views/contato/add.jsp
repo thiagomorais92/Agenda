@@ -16,6 +16,9 @@
 		Celular:<input type="text" name="celular"/><br/>
 		<input type="submit" value="Salvar contato.">
 	</form>	
+	<form action="../main" method="post">
+	<input type="submit" value="Voltar para o menu">
+	</form>
 	
 </body>
 </html>
